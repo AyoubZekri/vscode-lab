@@ -1,5 +1,5 @@
-class OrderProcessor {
-    public double calculateTotal(Order order) {
+class OrderUtils {
+    public static double calculateTotal(Order order) {
         double total = 0;
         for (Item item : order.getItems()) {
             total += item.getPrice() * item.getQuantity();
@@ -8,12 +8,14 @@ class OrderProcessor {
     }
 }
 
+class OrderProcessor {
+    public double calculateTotal(Order order) {
+        return OrderUtils.calculateTotal(order);
+    }
+}
+
 class InvoiceGenerator {
     public double calculateTotal(Order order) {
-        double total = 0;
-        for (Item item : order.getItems()) {
-            total += item.getPrice() * item.getQuantity();
-        }
-        return total;
+        return OrderUtils.calculateTotal(order);
     }
 }
